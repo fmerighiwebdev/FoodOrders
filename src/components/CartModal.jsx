@@ -13,12 +13,6 @@ const CartModal = forwardRef(function CartModal({ setIsCartOpen }, ref) {
 
   const cartModalRef = useRef(null);
 
-  const truncTotal = total.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-    roundingMode: "trunc",
-  });
-
   useImperativeHandle(ref, () => {
     return {
       openModal() {
@@ -45,18 +39,24 @@ const CartModal = forwardRef(function CartModal({ setIsCartOpen }, ref) {
             })}
           </ul>
           <div className="cart-total">
-            <p>${truncTotal}</p>
+            <p>${total}</p>
           </div>
           <div className="modal-actions">
-            <button type="button" className="text-button" onClick={closeCart}>Close</button>
-            <button type="button" className="button">Go to Checkout</button>
+            <button type="button" className="text-button" onClick={closeCart}>
+              Close
+            </button>
+            <button type="button" className="button">
+              Go to Checkout
+            </button>
           </div>
         </>
       ) : (
         <>
           <p>There are no items in your cart.</p>
           <div className="modal-actions">
-            <button type="button" onClick={closeCart}>Close</button>
+            <button type="button" className="text-button" onClick={closeCart}>
+              Close
+            </button>
           </div>
         </>
       )}
