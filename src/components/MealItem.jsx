@@ -2,25 +2,20 @@ import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 function MealItem({ meal }) {
-  const { total, setCart, setTotal } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
 
   const imageURL = `http://localhost:3000/${meal.image}`;
-
-  function handleAddToCart() {
-    setCart((prevCart) => [...prevCart, meal]);
-    setTotal((prevValue) => Number(prevValue) + Number(meal.price));
-    console.log(total);
-  }
+  const imageAlt = `${meal.name} Photo`;
 
   return (
     <div className="meal-item">
       <article>
-        <img src={imageURL} alt="Meal Photo"></img>
+        <img src={imageURL} alt={imageAlt}></img>
         <h3>{meal.name}</h3>
         <p className="meal-item-price">${meal.price}</p>
         <p className="meal-item-description">{meal.description}</p>
         <div className="meal-item-actions">
-          <button className="button" onClick={handleAddToCart}>
+          <button className="button" onClick={() => addItemToCart(meal)}>
             Add to Cart
           </button>
         </div>

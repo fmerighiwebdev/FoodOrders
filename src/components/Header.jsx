@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState, useRef } from "react";
 
-import foodAppLogo from '../assets/logo.jpg';
-import { CartContext } from '../context/CartContext';
-import CartModal from './CartModal';
+import foodAppLogo from "../assets/logo.jpg";
+import { CartContext } from "../context/CartContext";
+import CartModal from "./CartModal";
 
 function Header() {
-
   const { cart } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -37,9 +36,11 @@ function Header() {
         </div>
         <button onClick={openCart}>Cart ({cartItems})</button>
       </header>
-      {isCartOpen && <CartModal ref={cartModalRef} setIsCartOpen={setIsCartOpen} />}
+      {isCartOpen && (
+        <CartModal ref={cartModalRef} setIsCartOpen={setIsCartOpen} />
+      )}
     </>
   );
 }
 
-export default Header
+export default Header;
