@@ -130,8 +130,21 @@ h1 {
   background: linear-gradient(#29251c, #2c2306);
 }
 
+.cart {
+  animation: fade-slide-up .5s ease-in-out forwards;
+  border: none;
+  border-radius: 5px;
+  width: min(650px, 90%);
+}
+
+.cart::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .cart h2 {
   margin: 1rem 0;
+  font-weight: bold;
+  color: #1d1a16;
 }
 
 .cart ul {
