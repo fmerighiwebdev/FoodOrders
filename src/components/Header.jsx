@@ -2,29 +2,30 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 
 import foodAppLogo from "../assets/logo.jpg";
 import { CartContext } from "../context/CartContext";
-import CartModal from "./CartModal";
+import OrderModal from "./OrderModal";
 
 function Header() {
   const { cart } = useContext(CartContext);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState("cart");
 
-  const cartModalRef = useRef(null);
+  const modalRef = useRef(null);
 
   const cartItems = cart.length;
 
   useEffect(() => {
-    if (isCartOpen && cartModalRef.current) {
-      cartModalRef.current.openModal();
+    if (isModalOpen && modalRef.current) {
+      modalRef.current.openModal();
     }
-  }, [isCartOpen]);
+  }, [isModalOpen]);
   useEffect(() => {
-    if (!isCartOpen && cartModalRef.current) {
-      cartModalRef.current.closeModal();
+    if (!isModalOpen && modalRef.current) {
+      modalRef.current.closeModal();
     }
-  }, [isCartOpen]);
+  }, [isModalOpen]);
 
   function openCart() {
-    setIsCartOpen(true);
+    setIsModalOpen(true);
   }
 
   return (
@@ -36,8 +37,8 @@ function Header() {
         </div>
         <button onClick={openCart}>Cart ({cartItems})</button>
       </header>
-      {isCartOpen && (
-        <CartModal ref={cartModalRef} setIsCartOpen={setIsCartOpen} />
+      {isModalOpen && (
+        <OrderModal ref={modalRef} setIsModalOpen={setIsModalOpen} type={modalType} setType={setModalType} />
       )}
     </>
   );
